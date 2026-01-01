@@ -4,12 +4,16 @@ require('dotenv').config()
 const secret = process.env.SECRET_KEY
 
 const setUser = (user) => {
-    return jwt.sign({
-        _id: user._id,
-        email: user.email,
-        role : user.role
-    },
-        secret
+    return jwt.sign(
+        {
+            _id: user._id,
+            email: user.email,
+            role: user.role
+        },
+        secret,
+        {
+            expiresIn: '20m'
+        }
     )
 }
 

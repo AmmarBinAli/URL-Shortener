@@ -2,7 +2,7 @@ const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const app = express()
-const PORT = 3001
+require('dotenv').config()
 
 const urlStatus = require('./routes/url')
 const viewData = require('./routes/viewdata')
@@ -34,4 +34,4 @@ app.get('/', async (req, res) => {
 app.use('/url', restrictTo(["NORMAL", "ADMIN"]), urlStatus)
 app.use('/user', userRoute)
 
-app.listen(PORT, () => console.log(`Server started at port ${PORT}`))
+app.listen(process.env.PORT, () => console.log(`Server started at port ${[process.env.PORT]}`))
